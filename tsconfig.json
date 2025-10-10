@@ -1,0 +1,37 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"baseUrl": ".",
+		"erasableSyntaxOnly": true,
+		"esModuleInterop": true,
+		"exactOptionalPropertyTypes": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"jsx": "react-jsx",
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"module": "ESNext",
+		"moduleDetection": "force",
+		"moduleResolution": "bundler",
+		"noEmit": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"plugins": [
+			{
+				"name": "@react-router/dev"
+			}
+		],
+		"removeComments": true,
+		"resolveJsonModule": true,
+		"rootDirs": [".", "./.react-router/types"],
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"target": "ESNext",
+		"verbatimModuleSyntax": true,
+	},
+	"include": ["env.d.ts", "**/*.ts", "**/*.tsx", ".react-router/types/**/*"],
+	"exclude": ["node_modules"]
+}
