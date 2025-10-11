@@ -14,8 +14,8 @@ type NodeProps = {
 	nodeData?: NodeData;
 };
 
-const Node = ({ field, nodeData }: NodeProps) => {
-	if (!nodeData?.tree) {
+const Node = (props: NodeProps) => {
+	if (!props.nodeData?.tree) {
 		return <small style={{ marginLeft: "1rem" }}>(leaf)</small>;
 	}
 	return (
@@ -25,10 +25,10 @@ const Node = ({ field, nodeData }: NodeProps) => {
 				marginBottom: "2rem",
 			}}
 		>
-			{nodeData?.tree?.map((child) => (
+			{props.nodeData?.tree?.map((child) => (
 				<li key={child.id}>
 					Node {child.id}
-					<Node field={field} key={child.id} nodeData={child} />
+					<Node field={props.field} nodeData={child} />
 				</li>
 			))}
 		</ul>

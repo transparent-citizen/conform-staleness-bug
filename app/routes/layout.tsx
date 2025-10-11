@@ -11,11 +11,8 @@ export default () => (
 		>
 			<div>
 				The issue isn't completely deterministic. If it doesn't occur,
-				navigate <Link to="/a">here</Link> until you see an error in the
-				console.
-			</div>
-			<div>
-				For some reason, <Link to="/b">this</Link> link is also needed.
+				navigate <Link to="/a">here</Link> repeatedly until you see an
+				error in the console.
 			</div>
 		</div>
 
