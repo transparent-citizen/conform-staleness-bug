@@ -1,8 +1,8 @@
 {
 	"name": "conform-repro",
 	"dependencies": {
-		"@conform-to/dom": "https://pkg.pr.new/@conform-to/dom@f358ea5",
-		"@conform-to/react": "https://pkg.pr.new/@conform-to/react@f358ea5",
+		"@conform-to/dom": "https://pkg.pr.new/@conform-to/dom@b62ebb7",
+		"@conform-to/react": "https://pkg.pr.new/@conform-to/react@b62ebb7",
 		"@conform-to/zod": "1.12.0",
 		"@react-router/dev": "^7.9.4",
 		"@react-router/node": "^7.9.4",

@@ -52,7 +52,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 		defaultValue: nextValue,
 		lastResult: report(submission, {
 			reset: true,
-			targetValue: nextValue,
+			value: nextValue,
 		}),
 		sideDishOptions,
 		mealOptions,

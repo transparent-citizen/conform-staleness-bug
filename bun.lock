@@ -5,12 +5,12 @@
     "": {
       "name": "conform-repro",
       "dependencies": {
-        "@conform-to/dom": "https://pkg.pr.new/@conform-to/dom@f358ea5",
-        "@conform-to/react": "https://pkg.pr.new/@conform-to/react@f358ea5",
         "@conform-to/zod": "1.12.0",
         "@react-router/dev": "^7.9.4",
         "@react-router/node": "^7.9.4",
         "@react-router/serve": "^7.9.4",
+        "@conform-to/dom": "https://pkg.pr.new/@conform-to/dom@b62ebb7",
+        "@conform-to/react": "https://pkg.pr.new/@conform-to/react@b62ebb7",
         "isbot": "^5",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
@@ -108,9 +108,9 @@
 
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.2.5", "", { "os": "win32", "cpu": "x64" }, "sha512-F/jhuXCssPFAuciMhHKk00xnCAxJRS/pUzVfXYmOMUp//XW7mO6QeCjsjvnm8L4AO/dG2VOB0O+fJPiJ2uXtIw=="],
 
-    "@conform-to/dom": ["@conform-to/dom@https://pkg.pr.new/@conform-to/dom@f358ea5", {}],
+    "@conform-to/dom": ["@conform-to/dom@https://pkg.pr.new/@conform-to/dom@b62ebb7", {}],
 
-    "@conform-to/react": ["@conform-to/react@https://pkg.pr.new/@conform-to/react@f358ea5", { "dependencies": { "@conform-to/dom": "https://pkg.pr.new/edmundhung/conform/@conform-to/dom@f358ea5" }, "peerDependencies": { "react": ">=18" } }],
+    "@conform-to/react": ["@conform-to/react@https://pkg.pr.new/@conform-to/react@b62ebb7", { "dependencies": { "@conform-to/dom": "https://pkg.pr.new/edmundhung/conform/@conform-to/dom@b62ebb7" }, "peerDependencies": { "react": ">=18" } }],
 
     "@conform-to/zod": ["@conform-to/zod@1.12.0", "", { "dependencies": { "@conform-to/dom": "1.12.0" }, "peerDependencies": { "zod": "^3.21.0 || ^4.0.0" } }, "sha512-+teD2CFI0a3qvyi0SlL5l7YKkau2cb5PzBV2W/bh9xZqlM8jnaMIc03bWJegvbvL4yzkeUvNZwncw9hYcm6a6w=="],
 
@@ -744,7 +744,7 @@
 
     "@babel/template/@babel/types": ["@babel/types@7.28.2", "", { "dependencies": { "@babel/helper-string-parser": "^7.27.1", "@babel/helper-validator-identifier": "^7.27.1" } }, "sha512-ruv7Ae4J5dUYULmeXw1gmb7rYRz57OWCPM57pHojnLq/3Z1CK2lNSLTCVjxVk1F/TZHwOZZrOWi0ur95BbLxNQ=="],
 
-    "@conform-to/react/@conform-to/dom": ["@conform-to/dom@https://pkg.pr.new/edmundhung/conform/@conform-to/dom@f358ea5", {}],
+    "@conform-to/react/@conform-to/dom": ["@conform-to/dom@https://pkg.pr.new/edmundhung/conform/@conform-to/dom@b62ebb7", {}],
 
     "@conform-to/zod/@conform-to/dom": ["@conform-to/dom@1.12.0", "", {}, "sha512-TKTic9bKm7uEuf3ntrs5VeD3iDeEpSnA5H2qnAfI9dbostEr2hNlXCjOEGKFBiBtx+aPjpHtt/e0rs0+t+vWxg=="],
 
