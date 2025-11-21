@@ -1,7 +1,8 @@
 {
 	"name": "conform-repro",
 	"dependencies": {
-		"@conform-to/react": "1.12.0",
+		"@conform-to/dom": "https://pkg.pr.new/@conform-to/dom@f358ea5",
+		"@conform-to/react": "https://pkg.pr.new/@conform-to/react@f358ea5",
 		"@conform-to/zod": "1.12.0",
 		"@react-router/dev": "^7.9.4",
 		"@react-router/node": "^7.9.4",
@@ -16,8 +17,10 @@
 	"devDependencies": {
 		"@babel/preset-typescript": "^7.27.1",
 		"@biomejs/biome": "^2.2.5",
+		"@tailwindcss/vite": "^4.1.17",
 		"@types/react": "^19.2.2",
 		"@types/react-dom": "^19.2.1",
+		"tailwindcss": "^4.1.17",
 		"vite": "7.1.9"
 	},
 	"engines": {

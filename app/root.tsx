@@ -1,46 +1,25 @@
-import type { BaseMetadata } from "@conform-to/react/future";
-import { FormOptionsProvider } from "@conform-to/react/future";
-import type { ComponentProps } from "react";
-import { Outlet, Scripts } from "react-router";
+import { Links, type LinksFunction, Outlet, Scripts } from "react-router";
 
-export const defineCustomMetadata = <FieldShape, ErrorShape>(
-	metadata: BaseMetadata<FieldShape, ErrorShape>,
-) => {
-	return {
-		// get $$typeof() {
-		// 	return undefined;
-		// },
-		// get [Symbol.toStringTag]() {
-		// 	return "Object";
-		// },
-		get inputProps() {
-			return {
-				defaultValue: metadata.defaultValue,
-				name: metadata.name,
-				required: metadata.required,
-			} satisfies ComponentProps<"input">;
+import tailwindStyles from "./tailwind.css?url";
+
+export const links: LinksFunction = () => {
+	return [
+		{
+			href: tailwindStyles,
+			rel: "stylesheet",
 		},
-	};
+	];
 };
-declare module "@conform-to/react/future" {
-	interface CustomMetadata<FieldShape, ErrorShape>
-		extends ReturnType<
-			typeof defineCustomMetadata<FieldShape, ErrorShape>
-		> {}
-}
 
 export default () => {
 	return (
 		<html lang="en">
 			<head>
 				<meta charSet="utf-8"></meta>
+				<Links />
 			</head>
 			<body>
-				<FormOptionsProvider
-					defineCustomMetadata={defineCustomMetadata}
-				>
-					<Outlet />
-				</FormOptionsProvider>
+				<Outlet />
 				<Scripts />
 			</body>
 		</html>
