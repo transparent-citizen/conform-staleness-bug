@@ -49,7 +49,7 @@ export const meals: Meal[] = [
 		name: "Ice cream",
 		sideDishes: [
 			{
-				id: "caramel-srup",
+				id: "caramel-syrup",
 				title: "Caramel syrup",
 			},
 		],

@@ -1,8 +1,13 @@
-import { parseSubmission, report, useForm } from "@conform-to/react/future";
+import {
+	type DefaultValue,
+	parseSubmission,
+	report,
+	useForm,
+} from "@conform-to/react/future";
 import { coerceFormValue } from "@conform-to/zod/v4/future";
 import type { ChangeEvent } from "react";
-import { Form, useSubmit } from "react-router";
-import z from "zod";
+import { Form, redirect, useSubmit } from "react-router";
+import { z } from "zod";
 
 import { Select, type SelectOption } from "../../app/components/Select";
 import { meals } from "../../app/meals";
@@ -20,33 +25,59 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 	const submission = parseSubmission(url.searchParams);
 	const result = schema.safeParse(submission.payload);
 
-	const mealOptions = meals.map((meal) => ({
+	const mealId = result.data?.mealId;
+	const sideDishId = result.data?.sideDishId;
+
+	const mealOptions: SelectOption[] = meals.map((meal) => ({
 		label: meal.name,
 		value: meal.id,
 	}));
 
-	const { mealId } = result.data || {};
+	const meal = meals.find((meal) => meal.id === mealId);
 
-	const sideDishes =
-		meals.find((meal) => meal.id === mealId)?.sideDishes || [];
+	// Delete unrecognized mealId from URL
+	if (mealId !== undefined) {
+		if (!meals.find((_meal) => _meal.id === mealId)) {
+			url.searchParams.delete("mealId");
+			throw redirect(url.href);
+		}
+	}
 
-	// If the user has made a choice, select that side dish.
-	// Otherwise, if there are multiple side dishes, select the first one.
-	// Otheriwse, select none.
-	const sideDishId =
-		result.data?.sideDishId || sideDishes.length > 0
-			? sideDishes[0]?.id
-			: undefined;
+	// Delete sideDishId from URL if it doesn't belong to the meal
+	if (
+		meal &&
+		sideDishId !== undefined &&
+		!meal.sideDishes.some((sideDish) => sideDish.id === sideDishId)
+	) {
+		url.searchParams.delete("sideDishId");
+		throw redirect(url.href);
+	}
 
-	const sideDishOptions: SelectOption[] = sideDishes.map((sideDish) => ({
-		label: sideDish.title,
-		value: sideDish.id,
-	}));
+	// Set sideDishId in URL if there is only a single side dish available
+	if (meal && sideDishId === undefined) {
+		if (meal.sideDishes.length === 1) {
+			url.searchParams.set("sideDishId", String(meal.sideDishes[0].id));
+			throw redirect(url.href);
+		}
+	}
+
+	// Delete sideDishId from URL if mealId is missing
+	if (mealId === undefined && sideDishId !== undefined) {
+		url.searchParams.delete("sideDishId");
+		throw redirect(url.href);
+	}
+
+	const sideDishOptions: SelectOption[] = (meal?.sideDishes || []).map(
+		(_sideDish) => ({
+			label: _sideDish.title,
+			value: _sideDish.id,
+		}),
+	);
 
 	const nextValue = {
 		mealId: mealId ?? "",
 		sideDishId: sideDishId ?? "",
-	} satisfies z.input<typeof schema>;
+	} satisfies DefaultValue<z.input<typeof schema>>;
 
 	return {
 		defaultValue: nextValue,
@@ -79,15 +110,13 @@ export default ({ loaderData }: Route.ComponentProps) => {
 	return (
 		<Form className="self-center" {...form.props}>
 			<div className="w-96 mx-auto flex flex-col gap-4 mt-20">
-				<div className="text-lg">Select a meal</div>
-				<div className="flex flex-col space-y-6">
-					<Select
-						defaultValue={fields.mealId.defaultValue}
-						name={fields.mealId.name}
-						onChange={onChange}
-						options={loaderData.mealOptions}
-					/>
-				</div>
+				<div className="text-lg">Select a meal 🍔</div>
+				<Select
+					defaultValue={fields.mealId.defaultValue}
+					name={fields.mealId.name}
+					onChange={onChange}
+					options={loaderData.mealOptions}
+				/>
 				<div className="flex justify-end">
 					<button
 						className="bg-blue-400 hover:bg-blue-300 rounded-sm p-2 mx-auto cursor-pointer"
@@ -96,7 +125,7 @@ export default ({ loaderData }: Route.ComponentProps) => {
 						Get available side dishes
 					</button>
 				</div>
-				<div className="text-lg">Select a side dish</div>
+				<div className="text-lg">Select a side dish 🥣</div>
 				<Select
 					defaultValue={fields.sideDishId.defaultValue}
 					name={fields.sideDishId.name}
